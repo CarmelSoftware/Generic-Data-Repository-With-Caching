@@ -1,0 +1,72 @@
+@model GenericRepositoryWithCatching.Models.Blog
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="jumbotron">
+    <h2>Generic Repository With Memory Caching - @ViewBag.Title</h2>
+    <h4>By Carmel</h4>
+</div>
+<div class="jumbotron">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Blog</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Text)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Text, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Text)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DatePosted)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.DatePosted, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DatePosted)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MainPicture)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.MainPicture, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MainPicture)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BloggerID, "Blogger")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("BloggerID", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BloggerID)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" class="btn btn-success" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-success" })
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
