@@ -1,0 +1,59 @@
+@model GenericRepositoryWithCatching.Models.Blog
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="jumbotron">
+    <h2>Generic Repository With Memory Caching - @ViewBag.Title</h2>
+    <h4>By Carmel</h4>
+</div>
+<div class="jumbotron">
+    <h3>Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend>Blog</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Title)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Title)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Text)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Text)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.DatePosted)
+        </div>
+        <div class="display-field">
+           @String.Format("{0:yyyy-MM-dd}", @Model.DatePosted)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.MainPicture)
+        </div>
+        <div class="display-field">
+           <img src="~/Content/Images/@Model.MainPicture" />
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Blogger.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Blogger.Name)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" value="Delete" class="btn btn-success"  />
+            |
+        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-success" })
+        </p>
+    }
+</div>
